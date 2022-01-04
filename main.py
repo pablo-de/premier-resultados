@@ -1,33 +1,20 @@
 from flask import Flask, json
-from flask import render_template, jsonify
-from werkzeug import datastructures
+from flask import render_template
+import requests
 
 app = Flask(__name__)
 
-@app.route('/data_json')
-def data_json():
-    dummy_data = [
-    {
-        "id": 1,
-        "starting_time": "16:00",
-        "team_a": "Random Team 1",
-        "score": "1 - 0",
-        "team_b": "Random Team 2",
-        "minute": "10:00",
-    },
-    {
-        "id": 2,
-        "starting_time": "18:00",
-        "team_a": "Random Team 3",
-        "score": "0 - 0",
-        "team_b": "Random Team 4",
-        "minute": "00:00",
-    },
-]
-    return jsonify(dummy_data)
 
 @app.route('/')
-def index():
-    dummy_data = data_json()
-    return render_template('index.html', matches=dummy_data.json)
+def standings():
+    SECRET_KEY = ""
+    id_competitions = '2021'
+    api = 'https://api.football-data.org'
+    uri = '/v2/competitions/' + id_competitions + '/standings'
+    headers = { 'X-Auth-Token': SECRET_KEY }
 
+    response = requests.get(api + uri, headers = headers)
+    response.raise_for_status()
+    content = response.json()
+    table = content['standings'][0]['table']
+    return render_template("index.html", data = table)
