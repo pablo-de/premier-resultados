@@ -1,0 +1,31 @@
+<table class="table table-hover table-dark">
+
+    <tr class="bg-info">
+        <th>Fecha</th>
+        <th>Local</th>
+        <th>Resultado</th>
+        <th>Visitante</th>
+    </tr>
+
+    {% for item in data %}
+    <tr>
+        <td id="fecha"><b>{{item.utcDate}}</b></td>      
+        <td><b>{{item.homeTeam.name}}</b></td>
+        {% if item.score.fullTime.homeTeam is not none %}
+        <td><b>{{item.score.fullTime.homeTeam}} - {{item.score.fullTime.awayTeam}}</b></td>
+        {% else %}
+        <td> - </td>
+        {% endif %}
+        <td><b>{{item.awayTeam.name}}</b></td>
+
+    </tr>
+    {% endfor %}
+
+</table>
+
+<script>
+    function cambiarFecha() {
+        var element = document.getElementById('fecha').innerHTML;
+        new Date(element).toISOString();
+    }
+</script>
