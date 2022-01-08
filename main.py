@@ -5,7 +5,7 @@ import datetime
 
 app = Flask(__name__)
 
-SECRET_KEY = ""
+SECRET_KEY = "05d044c0996d48a2a108399cc847fafc"
 id_competitions = '2021'
 api = 'https://api.football-data.org'
 
@@ -43,6 +43,7 @@ def matches():
     fixture = content['matches']
     return fixture
 
+
 #Testear json
 @app.route('/data_json')
 def data_json():
@@ -61,3 +62,8 @@ def tabla_page():
     posiciones = standings()
     return render_template("tabla.html", data = posiciones)
 
+@app.template_filter('formatdatetime')
+def format_datetime(value):
+    cr_date = value
+    new_date = datetime.datetime.strptime(cr_date[:10], '%Y-%m-%d')
+    return new_date.strftime("%d-%m-%Y")

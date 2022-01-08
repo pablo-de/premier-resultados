@@ -9,7 +9,7 @@
 
     {% for item in data %}
     <tr>
-        <td id="fecha"><b>{{item.utcDate}}</b></td>      
+        <td id="fecha"><b>{{item.utcDate|formatdatetime }}</b></td>      
         <td><b>{{item.homeTeam.name}}</b></td>
         {% if item.score.fullTime.homeTeam is not none %}
         <td><b>{{item.score.fullTime.homeTeam}} - {{item.score.fullTime.awayTeam}}</b></td>
@@ -25,7 +25,10 @@
 
 <script>
     function cambiarFecha() {
-        var element = document.getElementById('fecha').innerHTML;
-        new Date(element).toISOString();
+        var element = document.getElementById('fecha').value;
+        var dateObject = new Date(element);
+
+        document.body.innerHTML = dateObject.toLocaleString();
     }
+
 </script>
