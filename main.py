@@ -62,6 +62,7 @@ def tabla_page():
     posiciones = standings()
     return render_template("tabla.html", data = posiciones)
 
+#Filtro para modificar el formato de las fechas
 @app.template_filter('formatdatetime')
 def format_datetime(value):
     cr_date = value
