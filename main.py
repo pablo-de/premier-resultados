@@ -5,7 +5,7 @@ import datetime
 
 app = Flask(__name__)
 
-SECRET_KEY = ""
+SECRET_KEY = "05d044c0996d48a2a108399cc847fafc"
 id_competitions = '2021'
 api = 'https://api.football-data.org'
 
@@ -47,7 +47,7 @@ def matches():
 #Testear json
 @app.route('/data_json')
 def data_json():
-    dummy_data = matches()
+    dummy_data = standings()
     return jsonify(dummy_data)
 
 #Routeo a paginas.

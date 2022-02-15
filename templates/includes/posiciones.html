@@ -1,9 +1,8 @@
 <table class="table table-dark table-striped">
     <tr class="bg-info">
-        <th>Logo</th>
-        <th>Equipo</th>
-        <th>Posicion</th>
-        <th>Puntos</th>
+        <th></th>
+        <th></th>
+        <th></th>
         <th>PJ</th>
         <th>PG</th>
         <th>PE</th>
@@ -11,13 +10,19 @@
         <th>GF</th>
         <th>GC</th>
         <th>DF</th>
+        <th>PTOS</th>
     </tr>
     {% for item in data %}
     <tr>
-        <td><img src="{{item.team.crestUrl}}" alt="logo" width="30" height="30"></td>
-        <td><b>{{item.team.name}}</b></td>
         <td><b>{{item.position}}</b></td>
-        <td><b>{{item.points}}</b></td>
+
+        {% if item.team.crestUrl is not none %}
+        <td><img src="{{item.team.crestUrl}}" alt="logo" width="30" height="30"></td>
+        {% else %}
+        <td> - </td>
+        {% endif %}
+        
+        <td><b>{{item.team.name}}</b></td>
         <td>{{item.playedGames}}</td>
         <td>{{item.won}}</td>
         <td>{{item.draw}}</td>
@@ -25,6 +30,7 @@
         <td>{{item.goalsFor}}</td>
         <td>{{item.goalsAgainst}}</td>
         <td>{{item.goalDifference}}</td>
+        <td><b>{{item.points}}</b></td>
     </tr>
     {% endfor %}
 </table>
