@@ -1,0 +1,15 @@
+version: "3.5"
+
+services:
+
+  web-app:
+    build: .
+    restart: always    
+    ports:
+      - target: 5000
+        published: 5050
+    networks:
+      - counter-net
+
+networks:
+  counter-net:
