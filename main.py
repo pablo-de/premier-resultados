@@ -5,7 +5,7 @@ import datetime
 
 app = Flask(__name__)
 
-SECRET_KEY = "05d044c0996d48a2a108399cc847fafc"
+SECRET_KEY = str(os.getenv("API_KEY"))
 id_competitions = '2021'
 api = 'https://api.football-data.org'
 
