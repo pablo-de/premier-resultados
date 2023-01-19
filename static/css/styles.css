@@ -19,6 +19,10 @@ body {
     padding: 50px;
 }
 
+.custom-pagination-container {
+    width: 100%;
+}
+
 footer {
     position: fixed;
     bottom: 0;
