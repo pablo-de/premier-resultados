@@ -3,8 +3,8 @@ from flask import render_template, jsonify
 import requests
 import datetime
 import os
-from dotenv import load_dotenv
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
 
 app = Flask(__name__)
 
