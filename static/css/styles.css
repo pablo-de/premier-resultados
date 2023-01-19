@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Nerko+One&display=swap");
+
+body {
+    margin-bottom: 100px;
+    background-size: 95%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #000022;
+    color: white;
+}
+
+.blockquote-container {
+    max-width: 100%;
+    /* establece el ancho máximo en 100% del ancho del contenedor */
+    max-height: 100%;
+    /* establece la altura máxima en 100% de la altura del contenedor */
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: rgba(38, 79, 117, 0.993)
+}
