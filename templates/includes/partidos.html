@@ -2,6 +2,7 @@
 
     <tr class="bg-info">
         <th>Fecha</th>
+        <th>Jornada</th>
         <th>Local</th>
         <th>Resultado</th>
         <th>Visitante</th>
@@ -9,7 +10,8 @@
 
     {% for item in data %}
     <tr>
-        <td><b>{{item.utcDate|formatdatetime }}</b></td>      
+        <td><b>{{item.utcDate|formatdatetime }}</b></td>
+        <td><b id="matchday">{{item.matchday}}</b></td>
         <td><b>{{item.homeTeam.name}}</b></td>
         {% if item.score.fullTime.homeTeam is not none %}
         <td><b>{{item.score.fullTime.homeTeam}} - {{item.score.fullTime.awayTeam}}</b></td>
@@ -22,3 +24,46 @@
     {% endfor %}
 
 </table>
+
+<div class="custom-pagination-container d-flex justify-content-between">
+    <nav aria-label="Paginación">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link prev" href="#" aria-label="Anterior" id="prev-button">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <nav aria-label="Paginación">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link next" href="#" aria-label="Siguiente" id="next-button">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+{% block scripts %}
+<script>
+
+    matchday = document.getElementById("matchday");
+    demomatchday = parseInt(matchday.innerHTML);
+
+    const prevButton = document.getElementById('prev-button');
+    prevButton.addEventListener('click', () => {
+        let page = demomatchday - 1
+        window.location.href = '/matches?page=' + page;
+    });
+
+    const nextButton = document.getElementById('next-button');
+    nextButton.addEventListener('click', () => {
+        let page = demomatchday + 1
+        window.location.href = '/matches?page=' + page;
+    });
+
+</script>
+{% endblock %}
