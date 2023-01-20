@@ -2,6 +2,7 @@ from flask import Flask, json, request
 from flask import render_template, jsonify
 import requests
 import datetime
+import time
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -58,6 +59,7 @@ def old_matches(page):
     urlMatches = '/v2/competitions/' + \
         id_competitions + '/matches?matchday=' + matchday
     headers = {'X-Auth-Token': SECRET_KEY}
+    time.sleep(2)
     response = requests.get(api + urlMatches, headers=headers)
     response.raise_for_status()
     content = response.json()
